@@ -12,14 +12,14 @@ from stable_baselines.common.policies import MlpPolicy
 from stable_baselines.common.vec_env import DummyVecEnv
 from stable_baselines import PPO2
 env.seed(20)
-env = CuriosityWrapper.CuriosityWrapper(env)
+#env = CuriosityWrapper.CuriosityWrapper(env)
 env = DummyVecEnv([lambda: env])
 try:
     model = PPO2.load("CuriousNet")
 except:
     model = PPO2(MlpPolicy, env, verbose=1)
 model.set_env(env)
-model.learn(total_timesteps=100000)
+model.learn(total_timesteps=1000000)
 print("Finished Training")
 model.save('CuriousNet')
 obs = env.reset()
