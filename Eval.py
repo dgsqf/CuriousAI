@@ -1,14 +1,14 @@
 from obstacle_tower_env import ObstacleTowerEnv
 from stable_baselines.common.evaluation import evaluate_policy
-from stable_baselines import PPO2
+from stable_baselines import ACER
 from CuriosityWrapper import CuriosityWrapper
-import gym
+
 from stable_baselines.common.vec_env import DummyVecEnv
 
-env = ObstacleTowerEnv(retro=True,realtime_mode=True)
+env = ObstacleTowerEnv(retro=True,realtime_mode=False)
 env.seed(20)
 env = CuriosityWrapper(env)
 env = DummyVecEnv([lambda: env])
-model = PPO2.load('CuriousNet')
+model = ACER.load('CuriousNet')
 model.set_env(env)
 print(evaluate_policy(model,env))
