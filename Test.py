@@ -6,7 +6,7 @@ env.seed(20)
 
 from stable_baselines.common.vec_env import DummyVecEnv
 from stable_baselines import ACER
-#env=CuriosityWrapper.CuriosityWrapper(env)
+env=CuriosityWrapper.CuriosityWrapper(env)
 env = DummyVecEnv([lambda: env])
 try:
     model = ACER.load("CuriousNet")

@@ -8,4 +8,5 @@ class CuriosityWrapper(gym.Wrapper):
         next_state, reward, done, info = self.env.step(action)
         if not next_state in self.stateslist:
             reward+=0.1
+        self.stateslist.append(next_state)
         return next_state, reward, done, info

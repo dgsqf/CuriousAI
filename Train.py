@@ -7,14 +7,14 @@ from stable_baselines.common.policies import MlpPolicy
 from stable_baselines.common.vec_env import DummyVecEnv
 from stable_baselines import ACER
 env.seed(20)
-#env = CuriosityWrapper.CuriosityWrapper(env)
+env = CuriosityWrapper.CuriosityWrapper(env)
 env = DummyVecEnv([lambda: env])
 try:
     model = ACER.load("CuriousNet")
 except:
-    model = ACER(MlpPolicy, env, verbose=1,n_steps=10)
+    model = ACER(MlpPolicy, env, verbose=1,n_steps=50)
 model.set_env(env)
-model.learn(total_timesteps=1000000)
+model.learn(total_timesteps=92000)
 print("Finished Training")
 model.save('CuriousNet')
 obs = env.reset()
